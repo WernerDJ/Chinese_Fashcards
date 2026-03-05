@@ -295,7 +295,7 @@ header {
 
 .sentence-front {
   font-family: 'Noto Sans SC', sans-serif;
-  font-size: 2rem;
+  font-size: 1rem;
   color: var(--ink-soft);
   line-height: 1.7;
   max-width: 460px;
@@ -312,7 +312,7 @@ header {
 /* Pinyin overlay */
 .pinyin-display {
   font-family: 'Fira Code', monospace;
-  font-size: 2rem;
+  font-size: 1rem;
   color: var(--red);
   letter-spacing: 0.05em;
   margin-bottom: 0.8rem;
@@ -325,7 +325,7 @@ header {
 
 .pinyin-sentence {
   font-family: 'Fira Code', monospace;
-  font-size: 1.5rem;
+  font-size: 0.78rem;
   color: var(--gold);
   letter-spacing: 0.02em;
   line-height: 1.6;
@@ -348,7 +348,7 @@ header {
 }
 .card-back .translation-sentence {
   font-family: 'Lora', serif;
-  font-size: 1.5rem;
+  font-size: 0.95rem;
   font-style: italic;
   color: var(--muted);
   line-height: 1.7;
@@ -500,7 +500,22 @@ header {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ── TOAST ───────────────────────────────────────────────── */
-.toast {
+.reset-all-btn {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted);
+  font-family: 'Lora', serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.reset-all-btn:hover { border-color: var(--red); color: var(--red); }
   position: fixed;
   bottom: 2rem; left: 50%;
   transform: translateX(-50%) translateY(80px);
@@ -575,6 +590,8 @@ header {
     <div id="cardContainer">
       <div class="loading"><span class="spinner"></span> Cargando…</div>
     </div>
+
+    <button class="reset-all-btn" onclick="confirmResetAll()">↺ Reiniciar todos los aprendidos</button>
   </div>
 
 </div>
@@ -584,7 +601,6 @@ header {
 <script>
 // ── CONFIG ────────────────────────────────────────────────
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxkSsqKdJKd5eHQlbt6HXqLUb13AIyrjq3E7q5N_58a50sKliyQ6tnfpDT8mxlhd6m9/exec';
-
 
 // ── STATE ─────────────────────────────────────────────────
 let allCards = [];
@@ -873,6 +889,21 @@ function showToast(msg, good = false) {
   void t.offsetWidth;
   t.classList.add('show');
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+async function confirmResetAll() {
+  if (!confirm('¿Reiniciar todos los aprendidos a FALSE? Esto borrará todo tu progreso.')) return;
+  try {
+    const data = await api({ action: 'resetAll' });
+    if (!data.success) { showToast('Error al reiniciar', false); return; }
+    allCards.forEach(c => c.aprendido = false);
+    deck.forEach(c => c.aprendido = false);
+    updateStats();
+    renderCard();
+    showToast('✓ Todos reiniciados a no aprendido', true);
+  } catch(e) {
+    showToast('Error de conexión', false);
+  }
 }
 
 // ── TOUCH & SWIPE ─────────────────────────────────────────
