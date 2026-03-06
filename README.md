@@ -110,10 +110,13 @@ Because Vercel is connected to your GitHub repository, redeployment is automatic
 
 - **Choose a mode** — 中文 → Español shows the Chinese character first; Español → 中文 shows the Spanish word first.
 ![Front Page](images/FrontPage.jpg)
+![Chinese Characters shown](images/Chinese_Spanish.jpg)
 - **Tap or click the card** to flip it and reveal the translation.
+![Show translation](images/Chinese_Spanish_translation.jpg)
 - **Swipe left** to go to the next card (mobile).
 - **Swipe right** to go to the previous card (mobile).
 - **Mostrar Pinyin** — shows the pinyin for the word and the example sentence.
+![Show Pinyin](images/Chinese_Spanish_pinyin.jpg)
 - **Escuchar palabra** — reads the Chinese word aloud (requires Chrome for best results).
 - **Escuchar frase** — reads the Chinese example sentence aloud.
 - **Aprendido checkbox** — marks the word as learned and saves it to the Google Sheet instantly.
