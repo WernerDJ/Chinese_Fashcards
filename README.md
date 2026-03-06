@@ -109,6 +109,7 @@ Because Vercel is connected to your GitHub repository, redeployment is automatic
 ## How to use the app
 
 - **Choose a mode** — 中文 → Español shows the Chinese character first; Español → 中文 shows the Spanish word first.
+![Front Page](images/FrontPage.jpg)
 - **Tap or click the card** to flip it and reveal the translation.
 - **Swipe left** to go to the next card (mobile).
 - **Swipe right** to go to the previous card (mobile).
