@@ -671,7 +671,6 @@ function shuffle(arr) {
 
 // ── RENDER ────────────────────────────────────────────────
 function renderCard() {
-  pinyinVisible = false;
   backRevealed = false;
   sentenceRevealed = false;
 
@@ -697,9 +696,11 @@ function renderCard() {
         <!-- FRONT -->
         <div class="card-front" id="cardFront">
           ${isZhEs
-            ? `<div class="pinyin-display" id="pinyinWord">${card.pinyin}</div>
+            ? `<div class="pinyin-display ${pinyinVisible ? 'visible' : ''}" id="pinyinWord">
+              ${card.pinyin}</div>
                <div class="char-main" onclick="speakWord()">${card.chino}</div>
-               <div class="pinyin-sentence" id="pinyinSentence">${card.frasePinyin}</div>
+               <div class="pinyin-sentence ${pinyinVisible ? 'visible' : ''}" id="pinyinSentence">
+              ${card.frasePinyin}</div>
                <div class="sentence-front" id="sentenceFront">${card.fraseChino}</div>`
             : `<div class="word-main">${card.espanol}</div>
                <div class="sentence-front spanish" id="sentenceFront">${card.fraseEspanol}</div>`
@@ -725,7 +726,10 @@ function renderCard() {
     <div class="btn-row">
       <button class="btn btn-flip" onclick="flipCard()">⟳ Voltear</button>
       ${isZhEs
-        ? `<button class="btn btn-pinyin" id="btnPinyin" onclick="togglePinyin()">拼 Mostrar Pinyin</button>`
+        ? `<button class="btn btn-pinyin ${pinyinVisible ? 'active' : ''}"
+        id="btnPinyin"
+        onclick="togglePinyin()">
+      拼 Mostrar Pinyin</button>`
         : ''
       }
       <button class="btn btn-audio" onclick="speakWord()">🔊 Escuchar palabra</button>
