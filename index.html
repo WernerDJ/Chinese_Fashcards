@@ -552,6 +552,9 @@ header {
 .translation-main{font-size:calc(clamp(2rem,6vw,3rem)*var(--fit-scale));}
 .translation-sentence,.pinyin-display,.pinyin-sentence{font-size:calc(1.5rem*var(--fit-scale));}
 
+
+.card-content{transform-origin:center center; width:100%;}
+
 </style>
 </head>
 <body>
@@ -708,7 +711,7 @@ function renderCard() {
       <div class="card" id="theCard" onclick="handleCardTap(event)">
 
         <!-- FRONT -->
-        <div class="card-front" id="cardFront">
+        <div class="card-front" id="cardFront"><div class="card-content" id="cardContent">
           ${isZhEs
             ? `<div class="pinyin-display ${pinyinVisible ? 'visible' : ''}" id="pinyinWord">
               ${card.pinyin}</div>
@@ -719,11 +722,11 @@ function renderCard() {
             : `<div class="word-main">${card.espanol}</div>
                <div class="sentence-front spanish" id="sentenceFront">${card.fraseEspanol}</div>`
           }
-          <div class="flip-indicator">· · ·</div>
+          <div class="flip-indicator">· · ·</div></div>
         </div>
 
         <!-- BACK -->
-        <div class="card-back" id="cardBack">
+        <div class="card-back" id="cardBack"><div class="card-content" id="cardContentBack">
           ${isZhEs
             ? `<div class="translation-main">${card.espanol}</div>
                <div class="translation-sentence" id="backSentence">${card.fraseEspanol}</div>`
@@ -731,7 +734,7 @@ function renderCard() {
                <div class="char-main" onclick="speakWord()" style="font-size:clamp(3rem,9vw,5rem)">${card.chino}</div>
                <div class="translation-sentence" id="backSentence">${card.frasePinyin}<br><span style="color:var(--muted);font-style:italic">${card.fraseChino}</span></div>`
           }
-        </div>
+        </div></div>
 
       </div>
     </div>
