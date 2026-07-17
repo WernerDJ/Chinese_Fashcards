@@ -223,10 +223,6 @@ header {
 }
 
 .card {
-  height:75vh;
-  min-height:75vh;
-  max-height:75vh;
-  overflow:hidden;
   background: white;
   border: 1.5px solid var(--border);
   border-radius: 4px;
@@ -542,19 +538,6 @@ header {
   .btn-row { gap: 0.5rem; }
   .btn { padding: 0.5rem 1rem; font-size: 0.82rem; }
 }
-
-:root{
-  --fit-scale:1;
-}
-.char-main{font-size:calc(clamp(2rem,12vw,7rem)*var(--fit-scale));}
-.word-main{font-size:calc(clamp(3rem,7vw,3.5rem)*var(--fit-scale));}
-.sentence-front{font-size:calc(2rem*var(--fit-scale));}
-.translation-main{font-size:calc(clamp(2rem,6vw,3rem)*var(--fit-scale));}
-.translation-sentence,.pinyin-display,.pinyin-sentence{font-size:calc(1.5rem*var(--fit-scale));}
-
-
-.card-content{transform-origin:center center; width:100%;}
-
 </style>
 </head>
 <body>
@@ -711,7 +694,7 @@ function renderCard() {
       <div class="card" id="theCard" onclick="handleCardTap(event)">
 
         <!-- FRONT -->
-        <div class="card-front" id="cardFront"><div class="card-content" id="cardContent">
+        <div class="card-front" id="cardFront">
           ${isZhEs
             ? `<div class="pinyin-display ${pinyinVisible ? 'visible' : ''}" id="pinyinWord">
               ${card.pinyin}</div>
@@ -722,11 +705,11 @@ function renderCard() {
             : `<div class="word-main">${card.espanol}</div>
                <div class="sentence-front spanish" id="sentenceFront">${card.fraseEspanol}</div>`
           }
-          <div class="flip-indicator">· · ·</div></div>
+          <div class="flip-indicator">· · ·</div>
         </div>
 
         <!-- BACK -->
-        <div class="card-back" id="cardBack"><div class="card-content" id="cardContentBack">
+        <div class="card-back" id="cardBack">
           ${isZhEs
             ? `<div class="translation-main">${card.espanol}</div>
                <div class="translation-sentence" id="backSentence">${card.fraseEspanol}</div>`
@@ -734,7 +717,7 @@ function renderCard() {
                <div class="char-main" onclick="speakWord()" style="font-size:clamp(3rem,9vw,5rem)">${card.chino}</div>
                <div class="translation-sentence" id="backSentence">${card.frasePinyin}<br><span style="color:var(--muted);font-style:italic">${card.fraseChino}</span></div>`
           }
-        </div></div>
+        </div>
 
       </div>
     </div>
