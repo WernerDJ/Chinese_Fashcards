@@ -223,6 +223,10 @@ header {
 }
 
 .card {
+  height:75vh;
+  min-height:75vh;
+  max-height:75vh;
+  overflow:hidden;
   background: white;
   border: 1.5px solid var(--border);
   border-radius: 4px;
@@ -538,6 +542,16 @@ header {
   .btn-row { gap: 0.5rem; }
   .btn { padding: 0.5rem 1rem; font-size: 0.82rem; }
 }
+
+:root{
+  --fit-scale:1;
+}
+.char-main{font-size:calc(clamp(2rem,12vw,7rem)*var(--fit-scale));}
+.word-main{font-size:calc(clamp(3rem,7vw,3.5rem)*var(--fit-scale));}
+.sentence-front{font-size:calc(2rem*var(--fit-scale));}
+.translation-main{font-size:calc(clamp(2rem,6vw,3rem)*var(--fit-scale));}
+.translation-sentence,.pinyin-display,.pinyin-sentence{font-size:calc(1.5rem*var(--fit-scale));}
+
 </style>
 </head>
 <body>
